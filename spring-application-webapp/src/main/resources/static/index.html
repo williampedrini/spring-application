@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appTest">
+<head>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="app/libs/angucomplete/angucomplete.css"/>
+
+    <!-- BEGIN APP CUSTOM CSS -->
+    <link rel="stylesheet" href="app/css/ui.css"/>
+    <link rel="stylesheet" href="app/css/bootstrap-custom.css"/>
+    <!-- END APP CUSTOM CSS -->
+</head>
+<body>
+<div class="jumbotron">
+    <section ng-controller="appTestCtrl">
+        <h1><strong>{{appName}}</strong></h1>
+        <hr/>
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" ng-click="accessQueryPage()">{{queryLinkName}}</a>
+                </div>
+            </div>
+        </nav>
+        <div ng-show="showLoading" style="text-align: center;padding: 45px;">
+            <img src="./app/imgs/loading_icon.gif"/>
+        </div>
+    </section>
+    <div ng-view></div>
+</div>
+
+<!-- BEGIN APP IMPORTS -->
+
+<!-- BEGIN APP GENERAL DEPENDENCIES -->
+<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular-messages/angular-messages.min.js"></script>
+<script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./app/libs/bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="./app/libs/angucomplete/angucomplete.js"></script>
+<!-- END APP GENERAL DEPENDENCIES -->
+
+<!-- BEGIN APP CONFIG DEPENDENCIES -->
+<script type="text/javascript" src="./app/js/app.js"></script>
+<script type="text/javascript" src="./app/js/config/routeConfig.js"></script>
+<script type="text/javascript" src="./app/js/value/configValue.js"></script>
+<!-- END APP CONFIG DEPENDENCIES -->
+
+<!-- BEGIN APP SERVICES -->
+<script type="text/javascript" src="./app/js/services/airportAPIService.js"></script>
+<script type="text/javascript" src="./app/js/services/countryAPIService.js"></script>
+<script type="text/javascript" src="./app/js/services/urlService.js"></script>
+<!-- END APP SERVICES -->
+
+<!-- BEGIN APP DIRECTIVES -->
+<script type="text/javascript" src="./app/js/directives/uiAlertDirective.js"></script>
+<!-- END APP DIRECTIVES -->
+
+<!-- BEGIN APP FILTERS -->
+<script type="text/javascript" src="./app/js/filters/airportTypeFilter.js"></script>
+<script type="text/javascript" src="./app/js/filters/booleanTypeFilter.js"></script>
+<!-- END APP FILTERS -->
+
+<!-- BEGIN APP SERVICES -->
+<script type="text/javascript" src="app/js/controllers/queryCtrl.js"></script>
+<script type="text/javascript" src="app/js/controllers/appTestCtrl.js"></script>
+<!-- END APP SERVICES -->
+
+<!-- END APP IMPORTS -->
+</body>
+</html>

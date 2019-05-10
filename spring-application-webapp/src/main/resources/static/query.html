@@ -1,0 +1,136 @@
+<!-- BEGIN QUERY SECTION -->
+<section>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Query Section</li>
+    </ol>
+
+    <!-- BEGIN ERROR MESSAGE -->
+    <div>
+        <ui-alert title="Oops, an error occurred." message="error"/>
+    </div>
+    <!-- END ERROR MESSAGE -->
+
+    <!-- BEGIN BUTTONS -->
+    <div class="row">
+        <div class="form-group">
+            <angucomplete id="countryNameTxtField"
+                          placeholder="Country Name"
+                          pause="100"
+                          selectedobject="selectedCountryByName"
+                          localdata="countries"
+                          searchfields="name"
+                          titlefield="name"
+                          minlength="3"
+                          inputclass="form-control">
+            </angucomplete>
+
+            <angucomplete id="countryCodeTxtField"
+                          placeholder="Country Code"
+                          pause="100"
+                          selectedobject="selectedCountryByCode"
+                          localdata="countries"
+                          searchfields="code"
+                          titlefield="code"
+                          minlength="1"
+                          inputclass="form-control">
+            </angucomplete>
+
+            <button class="btn btn-primary search-airports" ng-click="getAirports($event)">Search</button>
+        </div>
+    </div>
+    <!-- END BUTTONS -->
+
+    <!-- BEGIN AIRPORTS -->
+    <div class="row results">
+        <h3>Airports - Total: {{airports.length}}</h3>
+        <pagination
+                ng-show="airports.length > numPerPage"
+                ng-model="currentPage"
+                total-items="airports.length"
+                max-size="maxSize"
+                boundary-links="true">
+        </pagination>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Country</th>
+                <th>Municipality</th>
+                <th>Location</th>
+                <th>Site</th>
+                <th>Wikipedia</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-show="airports.length" ng-repeat="airport in filteredAirports">
+                <th scope="row">{{airport.id}}</th>
+                <td>{{airport.name}}</td>
+                <td>{{airport.type | airportType}}</td>
+                <td>{{airport.isoCountry}}</td>
+                <td>{{airport.municipality}}</td>
+                <td><a ng-show="airport.latitudeDeg && airport.longitudeDeg" ng-click="sendToLocationUrl(airport.latitudeDeg, airport.longitudeDeg)">Google Maps</a></td>
+                <td><a ng-show="airport.homeLink" href="{{airport.homeLink}}">Link</a></td>
+                <td><a ng-show="airport.wikipediaLink" href="{{airport.wikipediaLink}}">Link</a></td>
+                <td>
+                    <button class="btn btn-primary" ng-disabled="!airport.runways.length" ng-click="setRunways(airport.runways)" data-toggle="modal" data-target=".runwaysModal">Runways({{airport.runways.length}})</button>
+                </td>
+            </tr>
+            <tr align="center" ng-show="!airports.length">
+                <td class="empty-results" colspan="10">No results to show</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination
+                ng-show="airports.length > numPerPage"
+                ng-model="currentPage"
+                total-items="airports.length"
+                max-size="maxSize"
+                boundary-links="true">
+        </pagination>
+    </div>
+    <!-- END AIRPORTS -->
+
+    <!-- BEGIN RUNWAYS MODAL -->
+    <div class="modal fade runwaysModal" role="dialog" style="width: 800px; margin: auto;">
+        <div class="modal-dialog" style="width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Runways</h4>
+                </div>
+                <div class="modal-body" style="max-height: 800px;">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>#</th>
+                            <th>Airport Reference</th>
+                            <th>Surface</th>
+                            <th>Closed?</th>
+                            <th>He Location</th>
+                            <th>Le Location</th>
+                            <th>Length (ft)</th>
+                            <th>Width (ft)</th>
+                        </tr>
+                        <tr ng-show="runways.length > 0" ng-repeat="runway in runways">
+                            <th scope="row">{{runway.id}}</th>
+                            <td>{{runway.airportRef}}</td>
+                            <td>{{runway.surface}}</td>
+                            <td>{{runway.closed | booleanType}}</td>
+                            <td><a ng-show="runway.heLatitudeDeg && runway.heLongitudeDeg" ng-click="sendToLocationUrl(runway.heLatitudeDeg, runway.heLongitudeDeg)">Google Maps</a></td>
+                            <td><a ng-show="runway.leLatitudeDeg && runway.leLongitudeDeg" ng-click="sendToLocationUrl(runway.leLatitudeDeg, runway.leLongitudeDeg)">Google Maps</a></td>
+                            <td>{{runway.lengthFt}}</td>
+                            <td>{{runway.widthFt}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END RUNWAYS MODAL -->
+</section>
+<!-- END QUERY SECTION -->

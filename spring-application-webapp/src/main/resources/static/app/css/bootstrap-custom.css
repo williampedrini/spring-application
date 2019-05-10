@@ -1,0 +1,54 @@
+.alert {
+    margin: 10px 45px;
+    font-size: 15px;
+}
+
+.alert p {
+    font-size: 15px;
+}
+
+.jumbotron {
+    width: 1200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-top: 20px;
+}
+
+.jumbotron h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+.row {
+    padding: 45px;
+    background-color: #e4e4e4;
+    margin: 10px 45px;
+    border-radius: 10px;
+}
+
+.row.results {
+    padding: 10px 80px 10px 45px;
+}
+
+row.results tr.empty-results {
+    text-align: center;
+}
+
+btn.btn-primary.search-airports {
+    float: left;
+    margin-top: 10px;
+}
+
+.form-group input {
+    margin-bottom: 20px;
+}
+
+.navbar-brand.ng-binding {
+    font-size: 15px;
+}
+
+row.results tr.empty-results {
+    width: auto !important;
+}

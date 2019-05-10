@@ -1,0 +1,1 @@
+angular.module("appTest", ["ngRoute","ngMessages","ui.bootstrap","angucomplete"]);
